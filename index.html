@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+<title>Weikang BIAN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- For arrangement -->
+<link rel="stylesheet" href="styles/w3.css">
+<!-- For icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+<!-- For utilities -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="styles/css/bootstrap.min.css"> -->
+
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Lato", sans-serif;
+  }
+
+  body,
+  html {
+    height: 100%;
+    color: #777;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .w3-wide {
+    letter-spacing: 12px;
+    margin-right: -12px;
+  }
+
+  .w3-hover-opacity {
+    cursor: pointer;
+  }
+
+  /* Turn off parallax scrolling for tablets and phones */
+  @media only screen and (max-device-width: 1600px) {
+
+    .bgimg-1 {
+      background-attachment: scroll;
+      min-height: 400px;
+    }
+  }
+
+  .hero-overlay .btn {
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn-primary {
+    border-color: #0095eb !important;
+    background: #0095eb !important;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary.active,
+  .btn-primary:visited,
+  .open>.dropdown-toggle.btn-primary {
+    background: #0095eb !important;
+  }
+
+  .btn-light {
+    border-color: #fff !important;
+    background: #fff !important;
+  }
+
+  .btn-light:hover,
+  .btn-light:active,
+  .btn-light.active {
+    background: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .btn-outline {
+    background-color: transparent !important;
+    color: inherit;
+    transition: all .5s;
+  }
+
+  .btn-primary.btn-outline {
+    color: #0095eb !important;
+    border-color: #0095eb !important;
+  }
+
+  .btn-primary.btn-outline:focus {
+    color: #0095eb !important;
+  }
+
+  .btn-primary.btn-outline:active {
+    color: #fff !important;
+  }
+
+  .btn-light.btn-outline {
+    color: #fff !important;
+    border-color: #fff !important;
+  }
+
+  .btn-light.btn-outline:focus {
+    color: #fff !important;
+  }
+
+  .btn-light.btn-outline:active {
+    color: transparent !important;
+  }
+
+  .btn-success.btn-outline {
+    color: #5cb85c;
+  }
+
+  .btn-info.btn-outline {
+    color: #5bc0de;
+  }
+
+  .btn-warning.btn-outline {
+    color: #f0ad4e;
+  }
+
+  .btn-danger.btn-outline {
+    color: #d9534f;
+  }
+
+  .btn-primary.btn-outline:hover,
+  .btn-light.btn-outline:hover,
+  .btn-success.btn-outline:hover,
+  .btn-info.btn-outline:hover,
+  .btn-warning.btn-outline:hover,
+  .btn-danger.btn-outline:hover {
+    color: #fff !important;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    /* max-height: 400px; */
+  }
+
+</style>
+
+<body>
+
+  <!-- About -->
+  <div class="w3-content w3-container w3-padding-16" id="about">
+    <div class="w3-row">
+      <div class="w3-col m3 w3-center w3-padding-large">
+        <img src="images/westlake.jpg" class="w3-circle w3-image " alt="Photo of Me" width="190" height="190">
+        <div class="w3-xlarge w3-section">
+          <a href="wkbian@cse.cuhk.edu.hk" target="_blank"><i
+              class="fa fa-envelope-square ai-1x w3-hover-opacity" style="color:#3498DB"></i></a>
+          <a href="https://github.com/wkbian" target="_blank"><i class="fa fa-github w3-hover-opacity"
+              style="color:#3498DB"></i></a>
+        </div>
+      </div>
+
+      <div class="w3-col m9 w3-padding-large">
+        <h3>Weikang BIAN</h3>
+        I am an M.Phil. student at the Department of Computer Science and Engineering, the Chinese University of Hong Kong, supervised by <a href="https://www.cse.cuhk.edu.hk/~wei/" target="_blank">Prof. Wei MENG</a>. Before that, I obtained my B.Eng. degree in Software Engineering from Zhejiang University in 2018.
+      </div>
+    </div>
+
+  <!-- Publications and Projects -->
+  <div class="w3-content w3-container w3-padding-12" id="portfolio">
+    <h3 class="w3-center">Publication</h3>
+
+    <!-- Publication -->
+    <div class="w3-row-padding  w3-section">
+      <div class="w3-col m6 w3-center">
+        <img src="publication/life/images/featured.png" style="width:85%" alt="life-png">
+      </div>
+      <div class="w3-col m6 w3-">
+        <br>
+        <b>MineThrottle: Defending against Wasm In-Browser Cryptojacking</b>
+        <br>
+        <u>Weikang Bian</u>, Wei Meng, Mingxue Zhang.
+        <br>
+        In Proceedings of <i>The Web Conference 2020 (WWW)</i>, April 2020.
+        <br>
+        <a class="btn btn-primary btn-outline btn-sm" href="papers/www20_minethrottle.pdf" target="_blank"
+          rel="noopener">
+          PDF
+        </a>
+<!--         <a class="btn btn-primary btn-outline btn-sm" href="https://github.com/drinkingcoder/LIFE">
+          Code
+        </a> -->
+      </div>
+    </div>
+    <br>
+
+  <!-- Footer -->
+  <footer class="w3-center w3-white w3-padding-16" id="contact">
+    <p>Last updated on March 15, 2022</p>
+    <p>© 2022 Weikang BIAN</p>
+  </footer>
+</body>
+
+</html>
