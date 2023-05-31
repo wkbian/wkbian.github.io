@@ -157,22 +157,23 @@
   <div class="w3-content w3-container w3-padding-16" id="about">
     <div class="w3-row">
       <div class="w3-col m3 w3-center w3-padding-large">
-        <img src="images/profile.jpeg" class="w3-circle w3-image " alt="Photo of Me" width="190" height="190">
+        <img src="images/profile.jpeg" class="w3-circle w3-image " alt="Photo of Me" width="200" height="200">
         <div class="w3-xlarge w3-section">
-          <a href="mailto:wkbian@cse.cuhk.edu.hk" target="_blank"><i
-              class="fa fa-envelope-square ai-1x w3-hover-opacity" style="color:#3498DB"></i></a>
-          <a href="https://github.com/wkbian" target="_blank"><i class="fa fa-github w3-hover-opacity"
-              style="color:#3498DB"></i></a>
+          <a href="mailto:wkbian@cse.cuhk.edu.hk" target="_blank"><i class="fa fa-envelope-square fa-lg w3-hover-opacity" style="color:#3498DB"></i></a> 
+          <a href="https://github.com/wkbian" target="_blank"><i class="fa fa-github fa-lg w3-hover-opacity" style="color:#3498DB"></i></a> 
+          <a href="https://scholar.google.com/citations?hl=en&user=_PjUeqcAAAAJ" target="_blank"><i class="fa fa-google fa-lg w3-hover-opacity" style="color:#3498DB"></i></a>
         </div>
       </div>
 
       <div class="w3-col m9 w3-padding-large">
         <h3><b>Weikang BIAN</b></h3>
-        I am an M.Phil. student at the Department of Computer Science and Engineering, the Chinese University of Hong Kong, supervised by <a href="https://www.cse.cuhk.edu.hk/~wei/" target="_blank">Prof. Wei MENG</a>. Before that, I obtained my B.Eng. degree in Software Engineering from Zhejiang University in 2018.
+        I am a research assistant at CUHK, <a href="https://mmlab.ie.cuhk.edu.hk/index.html" target="_blank">MMLab</a>, and I work closely with <a href="https://drinkingcoder.github.io/" target="_blank">Zhaoyang Huang</a> and <a href="https://www.ee.cuhk.edu.hk/~hsli/" target="_blank">Prof. Hongsheng Li</a>.
+        Before that, I obtained my M.Phil. degree in Computer Science and Engineering from the Chinese University of Hong Kong in 2022 and my B.Eng. degree in Software Engineering from Zhejiang University in 2018. I had a wonderful experience working in <a href="https://seclab.cse.cuhk.edu.hk/" target="_blank">CUHK Computer Security Lab</a> under the supervision of <a href="https://www.cse.cuhk.edu.hk/~wei/" target="_blank">Prof. Wei MENG</a>.
         <br>
-        As a member of the <a href="https://seclab.cse.cuhk.edu.hk/" target="_blank">CUHK Computer Security Lab</a>, I work on browser security and dynamic program analysis problems. I am also interested in AI and AI-related security problems. 
+        My research interests are NeRF, Video Correspondence and AI security&privacy.
         <br>
-        I will graduate in the summer of 2022. (≧◡≦) I am now looking for a Ph.D. position and willing to explore new research areas!
+        <br>
+        <i class="fa fa-bullhorn w3-hover-opacity"></i> I am looking for a Ph.D. position and willing to explore new research areas!
       </div>
     </div>
   </div>
@@ -184,7 +185,55 @@
 
     <!-- Publication -->
     <div class="w3-row-padding  w3-section">
+      <div class="w3-col m4 w3-center">
+        <video muted autoplay loop>
+          <source src="images/videoflow_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="w3-col m8 w3-">
+        <b>Videoflow: Exploiting temporal cues for multi-frame optical flow estimation</b>
+        <br>
+        Xiaoyu Shi, Zhaoyang Huang, <u>Weikang Bian</u>, Dasong Li, Manyuan Zhang, Ka Chun Cheung, Simon See, Hongwei Qin, Jifeng Dai, Hongsheng Li
+        <br>
+        <i>arXiv preprint</i>, 2023
+        <br>
+        <a class="btn btn-primary btn-outline btn-sm" href="https://arxiv.org/abs/2303.08340" target="_blank"
+          rel="noopener">
+          Paper
+        </a>
+      </div>
+    </div>
+    <br>
+
+    <div class="w3-row-padding  w3-section">
+      <div class="w3-col m4 w3-center">
+        <video muted autoplay loop>
+          <source src="images/neuralmarker_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="w3-col m8 w3-">
+        <b>NeuralMarker: A Framework for Learning General Marker Correspondence</b>
+        <br>
+        Zhaoyang Huang, Xiaokun Pan, Weihong Pan, <u>Weikang Bian</u>, Yan Xu, Ka Chun Cheung, Guofeng Zhang, Hongsheng Li
+        <br>
+        <i>ACM Transactions on Graphics (TOG)</i>, November 2022.
+        <br>
+        <a class="btn btn-primary btn-outline btn-sm" href="https://arxiv.org/abs/2010.09343" target="_blank"
+          rel="noopener">
+          Paper
+        </a>
+        <a class="btn btn-primary btn-outline btn-sm" href="https://drinkingcoder.github.io/publication/neuralmarker" target="_blank">
+          Project Page
+        </a>
+        <a class="btn btn-primary btn-outline btn-sm" href="https://github.com/drinkingcoder/NeuralMarker" target="_blank">
+          Code
+        </a>
+      </div>
+    </div>
+
+    <div class="w3-row-padding  w3-section">
       <div class="w3-col m12 w3-">
+        <br>
         <b>MineThrottle: Defending against Wasm In-Browser Cryptojacking</b>
         <br>
         <u>Weikang Bian</u>, Wei Meng, Mingxue Zhang.
@@ -193,13 +242,14 @@
         <br>
         <a class="btn btn-primary btn-outline btn-sm" href="papers/www20_minethrottle.pdf" target="_blank"
           rel="noopener">
-          PDF
+          Paper
         </a>
         <a class="btn btn-primary btn-outline btn-sm" href="https://github.com/cuhk-seclab/MineThrottle">
           Code
         </a>
       </div>
     </div>
+
     <div class="w3-row-padding  w3-section">
       <div class="w3-col m12 w3-">
         <br>
@@ -211,7 +261,7 @@
         <br>
         <a class="btn btn-primary btn-outline btn-sm" href="papers/ccs19_poster_cryptojacking.pdf" target="_blank"
           rel="noopener">
-          PDF
+          Paper
         </a>
       </div>
     </div>
@@ -220,9 +270,9 @@
   <!-- Footer -->
   <footer class="w3-center w3-white w3-padding-4" style="margin-top:100px; width:100%; height:50px;", id="contact">
     <div class="w3-col w3-small", style="color:#777777">
-      Last updated on March 20, 2022.
+      Last updated on May 31, 2023.
       <br>
-      © 2022 Weikang BIAN.
+      © 2023 Weikang BIAN.
     <div>
   </footer>
 </body>
