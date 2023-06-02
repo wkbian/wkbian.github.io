@@ -42,11 +42,11 @@
         <div class="row justify-content-center">
           <div class="column">
             <a class="btn btn-large btn-light" href="" role="button" target="_blank">
-              <i class="fa fa-file-pdf-o"></i> Paper (comming soon)</a>
+              <i class="fa fa-file-pdf-o"></i> Paper</a>
           </div>
           <!-- <div class="column">
             <a class="btn btn-large btn-light" href="" role="button"  target="_blank">
-              <i class="fa fa-github"></i> Code (coming soon)</a>
+              <i class="fa fa-github"></i> Code</a>
           </div> -->
           <!-- <div class="column">
             <p class="mb-5"><a class="btn btn-large btn-light" href="" role="button">
@@ -57,6 +57,35 @@
     </div>
   </section>
 
+  <section>
+    <div class="container" style="max-width: 960px;">
+      <div class="row justify-content-center">
+        <div class="col-5 justify-content-center">
+          <video style="width: 100%;" autoplay loop muted>
+            <source src="images/breakdance-flare_1_context-tap.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="col-5 justify-content-center">
+          <video style="width: 100%" autoplay loop muted>
+            <source src="images/breakdance-flare_2_context-tap.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-5 justify-content-center">
+          <video style="width: 100%" autoplay loop muted>
+            <source src="images/swing_1_context-tap.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="col-5 justify-content-center">
+          <video style="width: 100%" autoplay loop muted>
+            <source src="images/swing_2_context-tap.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <br>
+    </div>
+  </section>
 
   <!-- abstract -->
   <section>
@@ -65,7 +94,7 @@
         <div class="col-12 text-center">
           <h4 style="font-weight: lighter;">Abstract</h4>
           <hr style="margin-top:0px">
-          <p class="text-left"> We tackle the problem of Tracking Any Point (TAP) in videos, which specifically aims at estimating persistent long-term trajectories of query points in videos. Previous methods attempted to estimate these trajectories independently to incorporate longer image sequences, therefore, ignoring the potential benefits of incorporating spatial context features. We argue that independent video point tracking also demands spatial context features. To this end, we propose a novel framework Context-TAP, which effectively improves point trajectory accuracy by aggregating spatial context features in videos. Context-TAP contains two main modules: 1) a SOurse Feature Enhancement (SOFE) module, and 2) a TArget Feature Aggregation (TAFA) module. Context-TAP significantly improves PIPs all-sided, reducing 15.2% Average Trajectory Error of Occluded Points (ATE-Occ) on CroHD and increasing 14.3% Average Percentage of Correct Keypoint (A-PCK) on TAP-Vid-Kinectics.</p>
+          <p class="text-left"> We tackle the problem of Tracking Any Point (TAP) in videos, which specifically aims at estimating persistent long-term trajectories of query points in videos. Previous methods attempted to estimate these trajectories independently to incorporate longer image sequences, therefore, ignoring the potential benefits of incorporating spatial context features. We argue that independent video point tracking also demands spatial context features. To this end, we propose a novel framework Context-TAP, which effectively improves point trajectory accuracy by aggregating spatial context features in videos. Context-TAP contains two main modules: 1) a SOurse Feature Enhancement (SOFE) module, and 2) a TArget Feature Aggregation (TAFA) module. Context-TAP significantly improves PIPs all-sided, reducing 11.4% Average Trajectory Error of Occluded Points (ATE-Occ) on CroHD and increasing 11.8% Average Percentage of Correct Keypoint (A-PCK) on TAP-Vid-Kinectics.</p>
         </div>
       </div>
     </div>
@@ -76,7 +105,7 @@
     <div class="container" style="max-width: 960px;">
       <div class="row mt-5">
         <div class="col-12 text-center">
-          <h4 style="font-weight: lighter;">Qualitative Results</h4>
+          <h4 style="font-weight: lighter;">Qualitative Comparison</h4>
           <hr style="margin-top:0px">
         </div>
       </div>
@@ -84,7 +113,7 @@
 
       <div class="row">
         <div class="col-12">
-        <div id="qualitative" class="carousel slide" data-ride="carousel">
+        <div id="qualitative" class="carousel slide" data-ride="carousel" data-interval="false">
           <ol class="carousel-indicators" style="filter: invert(100%); margin-bottom:0px;">
             <li data-target="#qualitative" data-slide-to="0" class="active"></li>
             <li data-target="#qualitative" data-slide-to="1"></li>
@@ -96,7 +125,10 @@
               <div class="row justify-content-center", style="margin-bottom:20px;">
                 <div class="col-5">
                   <div class="row justify-content-center">
-                    <img src="images/scooter-black_pips.gif" alt="scooter-black_pips" class="img-fluid" style="width: 95%;">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/scooter-black_pips.mp4" type="video/mp4">
+                    </video>
+                    <!-- <img src="images/scooter-black_pips.gif" alt="scooter-black_pips" class="img-fluid" style="width: 95%;"> -->
                   </div>
                   <div class="row justify-content-center mt-2">
                     <h5 style="font-weight: lighter;">PIPs</h5>
@@ -104,7 +136,10 @@
                 </div>
                 <div class="col-5">
                   <div class="row justify-content-center">
-                    <img src="images/scooter-black_context-tap.gif" alt="scooter-black_context-tap" class="img-fluid" style="width: 95%;">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/scooter-black_context-tap.mp4" type="video/mp4">
+                    </video>
+                    <!-- <img src="images/scooter-black_context-tap.gif" alt="scooter-black_context-tap" class="img-fluid" style="width: 95%;"> -->
                   </div>
                   <div class="row justify-content-center mt-2">
                     <h5 style="font-weight: lighter;">Context-TAP (Ours)</h5>
@@ -117,7 +152,10 @@
               <div class="row justify-content-center", style="margin-bottom:20px;">
                 <div class="col-5 text-center">
                   <div class="row justify-content-center">
-                    <img src="images/motocross-jump_pips.gif" alt="motocross-jump_pips" class="img-fluid" style="width: 95%;">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/motocross-jump_pips.mp4" type="video/mp4">
+                    </video>
+                    <!-- <img src="images/motocross-jump_pips.gif" alt="motocross-jump_pips" class="img-fluid" style="width: 95%;"> -->
                   </div>
                   <div class="row justify-content-center mt-2">
                     <h5 style="font-weight: lighter;">PIPs</h5>
@@ -125,7 +163,10 @@
                 </div>
                 <div class="col-5">
                   <div class="row justify-content-center">
-                    <img src="images/motocross-jump_context-tap.gif" alt="motocross-jump_context-tap" class="img-fluid" style="width: 95%;">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/motocross-jump_context-tap.mp4" type="video/mp4">
+                    </video>
+                    <!-- <img src="images/motocross-jump_context-tap.gif" alt="motocross-jump_context-tap" class="img-fluid" style="width: 95%;"> -->
                   </div>
                   <div class="row justify-content-center mt-2">
                     <h5 style="font-weight: lighter;">Context-TAP (Ours)</h5>
@@ -138,7 +179,10 @@
               <div class="row justify-content-center", style="margin-bottom:20px;">
                 <div class="col-5 text-center">
                   <div class="row justify-content-center">
-                    <img src="images/walking_pips.gif" alt="walking_pips" class="img-fluid" style="width: 95%;">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/walking_pips.mp4" type="video/mp4">
+                    </video>
+                    <!-- <img src="images/walking_pips.gif" alt="walking_pips" class="img-fluid" style="width: 95%;"> -->
                   </div>
                   <div class="row justify-content-center mt-2">
                     <h5 style="font-weight: lighter;">PIPs</h5>
@@ -146,7 +190,10 @@
                 </div>
                 <div class="col-5">
                   <div class="row justify-content-center">
-                    <img src="images/walking_context-tap.gif" alt="walking_context-tap" class="img-fluid" style="width: 95%;">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/walking_context-tap.mp4" type="video/mp4">
+                    </video>
+                    <!-- <img src="images/walking_context-tap.gif" alt="walking_context-tap" class="img-fluid" style="width: 95%;"> -->
                   </div>
                   <div class="row justify-content-center mt-2">
                     <h5 style="font-weight: lighter;">Context-TAP (Ours)</h5>
@@ -168,12 +215,135 @@
         </div>
         </div>
       </div>
+
+      <div class="row mt-5">
+        <div class="col-12">
+        <div id="qualitative_long" class="carousel slide" data-ride="carousel" data-interval="false">
+          <ol class="carousel-indicators" style="filter: invert(100%); margin-bottom:0px;">
+            <li data-target="#qualitative_long" data-slide-to="0" class="active"></li>
+            <li data-target="#qualitative_long" data-slide-to="1"></li>
+            <li data-target="#qualitative_long" data-slide-to="2"></li>
+          </ol>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row justify-content-center", style="margin-bottom:20px;">
+                <div class="col-5">
+                  <div class="row justify-content-center">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/varanus-cage_pips.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="row justify-content-center mt-2">
+                    <h5 style="font-weight: lighter;">PIPs</h5>
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="row justify-content-center">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/varanus-cage_context-tap.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="row justify-content-center mt-2">
+                    <h5 style="font-weight: lighter;">Context-TAP (Ours)</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row justify-content-center", style="margin-bottom:20px;">
+                <div class="col-5">
+                  <div class="row justify-content-center">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/stunt_pips.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="row justify-content-center mt-2">
+                    <h5 style="font-weight: lighter;">PIPs</h5>
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="row justify-content-center">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/stunt_context-tap.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="row justify-content-center mt-2">
+                    <h5 style="font-weight: lighter;">Context-TAP (Ours)</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row justify-content-center", style="margin-bottom:20px;">
+                <div class="col-5">
+                  <div class="row justify-content-center">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/hockey_pips.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="row justify-content-center mt-2">
+                    <h5 style="font-weight: lighter;">PIPs</h5>
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="row justify-content-center">
+                    <video style="width: 95%;" autoplay loop muted>
+                      <source src="images/hockey_context-tap.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="row justify-content-center mt-2">
+                    <h5 style="font-weight: lighter;">Context-TAP (Ours)</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <a class="carousel-control-prev" href="#qualitative_long" role="button" data-slide="prev" style="filter: invert(100%); width: 5%;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#qualitative_long" role="button" data-slide="next" style="filter: invert(100%); width: 5%;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        </div>
+      </div>
+
     </div>
     <br>
   </section>
 
-  <!-- citing -->
   <section>
+    <div class="container" style="max-width: 960px;">
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <h4 style="font-weight: lighter;">Quantitative Comparison</h4>
+          <hr style="margin-top:0px">
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-10 text-center">
+          <img src="images/quantitative.jpg" alt="walking_context-tap" class="img-fluid" style="width: 100%;">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-left">
+          <p><b>FlyingThings++ and CroHD</b>. Context-TAP ranks 1st on all metrics and presents significant performance superiority compared with previous methods. Specifically, Context-TAP achieves 7.06 ATE-Occ and 4.28 ATE-Vis on the CroHD dataset, 11.4% and 9.5% error reductions from PIPs, the runner-up. On the FlyingThings++ dataset, our Context-TAP decreases the ATE-Vis and ATE-Occ by 0.96 and 2.18, respectively.</p>
+          <p><b>TAP-Vid-DAVIS (first) and TAP-Vid-Kinectics (first)</b>. A-PCK, the average percentage of correct key points, is the core metric. Context-TAP ranks 1st in terms of A-PCK on both benchmarks. Specifically, Context-TAP outperforms TAP-Net by 24.1% on the TAP-Vid-DAVIS benchmark and improves PIPs by 11.8% on the TAP-Vid-Kinectics benchmarks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- citing -->
+  <!-- <section>
     <div class="container"  style="max-width: 960px;">
       <div class="row mt-5">
         <div class="col-12 text-center">
@@ -189,7 +359,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+
+  <br>
+  <br>
+  <br>
 
   <footer class="text-center" style="margin-bottom:10px">
     <p>Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the website template.</p>
