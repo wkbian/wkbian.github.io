@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking">
+  <meta name="keywords" content="Video Generation, Video Editing, 3D Point Tracking, 4D Gaussian Splatting, 4D Video">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="./static/js/jquery-3.6.4.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/lazy.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-size-2 publication-title">GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wkbian.github.io/">Weikang Bian</a><sup>1,2</sup>, </span>
+            <span class="author-block">
+              <a href="https://drinkingcoder.github.io/">Zhaoyang Huang</a><sup>3</sup>, </span>
+            <span class="author-block">
+              <a href="https://xiaoyushi97.github.io/">Xiaoyu Shi</a><sup>1</sup>, </span> <br>
+            <span class="author-block">
+              <a href="https://eugenelyj.github.io/">Yijin Li</a><sup>3</sup>, </span>
+            <span class="author-block">
+              <a href="https://g-u-n.github.io/">Fu-Yun Wang</a><sup>1</sup>, </span> 
+            <span class="author-block">
+              <a href="https://www.ee.cuhk.edu.hk/~hsli/">Hongsheng Li</a><sup>1,2</sup> </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Multimedia Laboratory, The Chinese University of Hong Kong</span> &nbsp;
+            <span class="author-block"><sup>2</sup>Centre for Perceptual and Interactive Intelligence</span>
+            <span class="author-block"><sup>3</sup>Avolution AI</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>arXiv (coming soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Three columns */
+        grid-template-rows: repeat(1, 1fr); /* Two rows */
+        gap: 0px 4px; /* Gap between videos */
+        width: 80%; /* Set the container width to 80% */
+        margin: 0 auto; /* Center the container horizontally */
+    }
+
+    .video-grid video {
+        width: 100%; /* Videos fill the container width */
+        height: auto;
+    }
+</style>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/videos/corgi.mov" type="video/mp4">
+      </video>
+      <br>
+      <br>
+      <p style="text-align: center;"> GS-DiT provides 4D video contorl for a single monocular video.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            4D video control is essential in video generation as it enables the use of sophisticated lens techniques, such as multi-camera shooting and dolly zoom, which are currently unsupported by existing methods. Training a video Diffusion Transformer (DiT) directly to control 4D content requires expensive multi-view videos. Inspired by Monocular Dynamic novel View Synthesis (MDVS) that optimizes a 4D representation and renders videos according to different 4D elements, such as camera pose and object motion editing, we bring pseudo 4D Gaussian fields to video generation. Specifically, we propose a novel framework that constructs a pseudo 4D Gaussian field with dense 3D point tracking and renders the Gaussian field for all video frames. Then we finetune a pretrained DiT to generate videos following the guidance of the rendered video, dubbed as GS-DiT. To boost the training of the GS-DiT, we also propose an efficient Dense 3D Point Tracking (D3D-PT) method for the pseudo 4D Gaussian field construction. Our D3D-PT outperforms SpatialTracker, the state-of-the-art sparse 3D point tracking method, in accuracy and accelerates the inference speed by two orders of magnitude. During the inference stage, GS-DiT can generate videos with the same dynamic content while adhering to different camera parameters, addressing a significant limitation of current video generation models. GS-DiT demonstrates strong generalization capabilities and extends the 4D controllability of Gaussian splatting to video generation beyond just camera poses. It supports advanced cinematic effects through the manipulation of the Gaussian field and camera intrinsics, making it a powerful tool for creative video production.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</section>
+
+<br>
+
+<style>
+  .video-grid-two-cols {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Two columns */
+      gap: 10px; /* Gap between videos */
+      width: 60%; /* Set the container width to 60% */
+      margin: 0 auto; /* Center the container horizontally */
+      align-items: center;
+  }
+
+  .video-grid-two-cols video {
+      width: 100%; /* Videos fill the container width */
+      height: auto;
+  }
+  .video-grid-two-cols-narrow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 10px; /* Gap between videos */
+    width: 50%; /* Set the container width to 60% */
+    margin: 0 auto; /* Center the container horizontally */
+    align-items: center;
+}
+
+.video-grid-two-cols-narrow video {
+    width: 100%; /* Videos fill the container width */
+    height: auto;
+}
+  .video-grid-three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Two columns */
+      gap: 10px; /* Gap between videos */
+      width: 60%; /* Set the container width to 60% */
+      margin: 0 auto; /* Center the container horizontally */
+      align-items: center;
+  }
+
+  .video-grid-three-cols video {
+      width: 100%; /* Videos fill the container width */
+      height: auto;
+  }
+
+  .video-grid-three-cols-wide {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Two columns */
+    gap: 10px; /* Gap between videos */
+    width: 70%; /* Set the container width to 60% */
+    margin: 0 auto; /* Center the container horizontally */
+    align-items: center;
+}
+
+.video-grid-three-cols-wide video {
+    width: 100%; /* Videos fill the container width */
+    height: auto;
+}
+
+  .video-grid-four-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Two columns */
+    gap: 10px; /* Gap between videos */
+    width: 60%; /* Set the container width to 60% */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+
+  .video-grid-four-cols video {
+      width: 100%; /* Videos fill the container width */
+      height: auto;
+  }
+  .video-container {
+    text-align: center;
+    margin: 12px auto;
+  }
+  .video-title {
+    font-size: clamp(0.6em, 1vw, 1em); /* Adjust the font size as needed */
+    margin-top: 5px; /* Space between the video and the title */
+  }
+  @media (max-width: 600px) {
+    .video-title {
+      font-size: 0.8em; /* Adjust the font size for smaller screens */
+    }
+  }
+</style>
+
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Object Editing</h2>
+  </div>
+  <br>
+  <div class="video-grid-two-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/object_editing/windmill.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/object_editing/windmill-rotate_down_camera_poses_30_7.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-two-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/object_editing/sakura.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/object_editing/sakura-id_camera_poses.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-two-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/object_editing/sunflower.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/object_editing/sunflower-id_camera_poses.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
+
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Dolly Zoom</h2>
+  </div>
+  <br>
+  <div class="video-grid-two-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/dolly_zoom/camel2.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/dolly_zoom/camel2-id_camera_poses.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-two-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/dolly_zoom/parrot3.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/dolly_zoom/parrot3-id_camera_poses.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-two-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/dolly_zoom/beach_woman.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/dolly_zoom/beach_woman-id_camera_poses.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
+
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Multi-camera Shooting</h2>
+  </div>
+  <br>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/cycling_man.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/cycling_man-00a5a2af678f37d5.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 1</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/cycling_man-1deec169175eb15b.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 2</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/cycling_man-rotate_up_camera_poses_30_25.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 3</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/big_sur.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/big_sur-rotate_downleft_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 1</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/big_sur-rotate_left_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 2</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/big_sur-rotate_right_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 3</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/suv_in_dust.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/suv_in_dust-rotate_right_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 1</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/suv_in_dust-rotate_up_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 2</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/multi-camera_shooting/suv_in_dust-rotate_upright_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Trajectory 3</h2>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
+
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Camera Pose Control</h2>
+  </div>
+  <br>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/bubble.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/bubble-1b87f55dec310243.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/swing.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/swing-0c788e368d993870.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/clock2.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/clock2-rotate_down_camera_poses_30_10.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/camel.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/camel-1b87f55dec310243.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/parrot.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/parrot-rotate_right_camera_poses_30_15.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/baboon.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/baboon-rotate_left_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/autumn_forest.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/autumn_forest-0a3b5fb184936a83.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/lily_of_the_valley.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/lily_of_the_valley-0aacb1732fee7a3c.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/ocean.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/ocean-rotate_left_camera_poses_30_10.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/typing_man.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/typing_man-rotate_downright_camera_poses_30_10.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/keyboard_hands.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/keyboard_hands-rotate_upright_camera_poses_30_10.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/italian_pup.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/italian_pup-rotate_upleft_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div>
+  <!-- <div class="video-grid-four-cols">
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/vlogger_corgi.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/vlogger_corgi-rotate_left_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/otter_on_a_surfboard.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Input Video</h2>
+    </div>
+    <div class="video-container">
+      <video class="lazy" autoplay controls muted loop playsinline>
+        <source data-src="static/videos/camera_pose_control/otter_on_a_surfboard-rotate_up_camera_poses_30_20.mp4" type="video/mp4">
+      </video>
+      <h2 class="video-title">Output Video</h2>
+    </div>
+  </div> -->
+</section>
+<br>
+<br>
+<br>
+
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Comparison on Point Tracking</h2>
+  </div>
+  <br>
+  <div class="columns is-centered has-text-centered">
+    <img src="static/images/2d_point_tracking.png", width="60%">
+  </div>
+  <div class="columns is-centered has-text-centered">
+    <img src="static/images/3d_point_tracking.png", width="60%">
+  </div>
+<section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>TBA
+<!-- @inproceedings{,
+  title     = {},
+  author    = {},
+  journal   = {},
+  year      = {}
+} -->
+</code></pre>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div align="center" class="container">
+    <div class="columns is-centered">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The website template is based on <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a> and <a href="https://github.com/shape-of-motion/shape-of-motion.github.io">shape-of-motion</a>. Thanks to their excellent website templates.
+          </p>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
