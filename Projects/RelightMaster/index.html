@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="RelightMaster: Precise Video Relighting with Multi-plane Light Images">
+  <meta name="keywords" content="Video Editing, Video Relighting, Video Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RelightMaster: Precise Video Relighting with Multi-plane Light Images</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="./static/js/jquery-3.6.4.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/lazy.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-size-2 publication-title">RelightMaster: Precise Video Relighting with Multi-plane Light Images</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wkbian.github.io/">Weikang Bian</a><sup>1</sup>, </span>
+            <span class="author-block">
+              <a href="https://xiaoyushi97.github.io/">Xiaoyu Shi</a><sup>2</sup>, </span>
+            <span class="author-block">
+              <a href="https://drinkingcoder.github.io/">Zhaoyang Huang</a><sup>1</sup>, </span>
+            <span class="author-block">
+              <a href="https://jianhongbai.github.io/">Jianhong Bai</a><sup>3</sup>, </span><br>
+            <span class="author-block">
+              <a href="https://qinghew.github.io/">Qinghe Wang</a><sup>4</sup>, </span>
+            <span class="author-block">
+              <a href="https://xinntao.github.io/">Xintao Wang</a><sup>2</sup>, </span>
+            <span class="author-block">
+              <a href="https://magicwpf.github.io/">Pengfei Wan</a><sup>2</sup>, </span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Kun_Gai1">Kun Gai</a><sup>2</sup>, </span>
+            <span class="author-block">
+              <a href="https://www.ee.cuhk.edu.hk/~hsli/">Hongsheng Li</a><sup>1</sup> </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Multimedia Laboratory, The Chinese University of Hong Kong</span>  &nbsp;
+            <span class="author-block"><sup>2</sup>Kling Team, Kuaishou Technology</span><br>
+            <span class="author-block"><sup>3</sup>Zhejiang University</span> &nbsp;
+            <span class="author-block"><sup>4</sup>Dalian University of Technology</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (comming soon)</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Three columns */
+        grid-template-rows: repeat(1, 1fr); /* Two rows */
+        gap: 0px 4px; /* Gap between videos */
+        width: 80%; /* Set the container width to 80% */
+        margin: 0 auto; /* Center the container horizontally */
+    }
+
+    .video-grid video {
+        width: 100%; /* Videos fill the container width */
+        height: auto;
+    }
+</style>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/videos/demo_video_1.mp4" type="video/mp4">
+      </video>
+      <br>
+      <br>
+      <p style="text-align: center;"> RelightMaster generates physically plausible lighting and shadows with the reference videos.</p>
+      <br>
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/videos/demo_video_2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in diffusion models enable high-quality video generation and editing, but precise relighting with consistent video contents, which is critical for shaping scene atmosphere and viewer attention, remains unexplored. Mainstream text-to-video (T2V) models lack fine-grained lighting control due to text’s inherent limitation in describing lighting details and insufficient pre-training on lighting-related prompts. Additionally, constructing high-quality relighting training data is challenging, as real-world controllable lighting data is scarce. To address these issues, we propose RelightMaster, a novel framework for accurate and controllable video relighting.
+            First, we build RelightVideo, the first dataset with identical dynamic content under varying precise lighting conditions based on the Unreal Engine. 
+            Then, we introduce Multi-plane Light Image (MPLI), a novel visual prompt inspired by Multi-Plane Image (MPI). MPLI models lighting via K depth-aligned planes, representing 3D light source positions, intensities, and colors while supporting multi-source scenarios and generalizing to unseen light setups. Third, we design a Light Image Adapter that seamlessly injects MPLI into pre-trained Video Diffusion Transformers (DiT): it compresses MPLI via a pre-trained Video VAE and injects latent light features into DiT blocks, leveraging the base model’s generative prior without catastrophic forgetting.
+            Experiments show that RelightMaster generates physically plausible lighting and shadows and preserves original scene content.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-grid-two-cols {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Two columns */
+      gap: 10px; /* Gap between videos */
+      width: 60%; /* Set the container width to 60% */
+      margin: 0 auto; /* Center the container horizontally */
+      align-items: center;
+  }
+
+  .video-grid-two-cols video {
+      width: 100%; /* Videos fill the container width */
+      height: auto;
+  }
+  .video-grid-two-cols-narrow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 10px; /* Gap between videos */
+    width: 50%; /* Set the container width to 60% */
+    margin: 0 auto; /* Center the container horizontally */
+    align-items: center;
+}
+
+.video-grid-two-cols-narrow video {
+    width: 100%; /* Videos fill the container width */
+    height: auto;
+}
+  .video-grid-three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Two columns */
+      gap: 10px; /* Gap between videos */
+      width: 60%; /* Set the container width to 60% */
+      margin: 0 auto; /* Center the container horizontally */
+      align-items: center;
+  }
+
+  .video-grid-three-cols video {
+      width: 100%; /* Videos fill the container width */
+      height: auto;
+  }
+
+  .video-grid-three-cols-wide {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Two columns */
+    gap: 10px; /* Gap between videos */
+    width: 70%; /* Set the container width to 60% */
+    margin: 0 auto; /* Center the container horizontally */
+    align-items: center;
+}
+
+.video-grid-three-cols-wide video {
+    width: 100%; /* Videos fill the container width */
+    height: auto;
+}
+
+  .video-grid-four-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Two columns */
+    gap: 10px; /* Gap between videos */
+    width: 60%; /* Set the container width to 60% */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+
+  .video-grid-four-cols video {
+      width: 100%; /* Videos fill the container width */
+      height: auto;
+  }
+  .video-container {
+    text-align: center;
+    margin: 12px auto;
+  }
+  .video-title {
+    font-size: clamp(0.6em, 1vw, 1em); /* Adjust the font size as needed */
+    margin-top: 5px; /* Space between the video and the title */
+  }
+  @media (max-width: 600px) {
+    .video-title {
+      font-size: 0.8em; /* Adjust the font size for smaller screens */
+    }
+  }
+</style>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/videos/demo_video_sub_1.mp4" type="video/mp4">
+      </video>
+      <br>
+      <br>
+      <p>
+        We build a dataset rendering pipeline based on Unreal Engine to batch generate video training data with the same content but different lighting.
+        We adjust the 3D position, color, and intensity of the point lights to provide fine-grained control over the lighting conditions.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/videos/demo_video_sub_2.mp4" type="video/mp4">
+      </video>
+      <br>
+      <br>
+      <p>
+        RelightMaster generates relit videos according to the input lighting conditions, which include light source positions in the 3D camera frustum, and the light color and intensity.
+        RelightMaster also supports multiple and temporally-varying light source control.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="static/videos/demo_video_sub_3.mp4" type="video/mp4">
+      </video>
+      <br>
+      <br>
+      <p>
+        We conduct four experiments for comparison. The first two groups focus on dynamic light position and color changes: the light source is moved from the top-left to the bottom-right of the frame, with its color gradually transitioning from red to green.
+        The remaining two groups involve dynamic depth adjustment of a white light source, which is gradually moved forward along the camera lens.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>
+      Comming soon
+    </code></pre>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div align="center" class="container">
+    <div class="columns is-centered">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The website template is based on <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a> and <a href="https://github.com/shape-of-motion/shape-of-motion.github.io">shape-of-motion</a>. Thanks to their excellent website templates.
+          </p>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+</body>
+</html>
