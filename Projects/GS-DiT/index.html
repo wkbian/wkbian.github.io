@@ -2,10 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking">
-  <meta name="keywords" content="Video Generation, Video Editing, 3D Point Tracking, 4D Gaussian Splatting, 4D Video">
+  <!-- <meta name="description" content="GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking"> -->
+  <meta name="description" content="GS-DiT: Advancing Video Generation with Dynamic 3D Gaussian Fields through Efficient Dense 3D Point Tracking">
+  <meta name="keywords" content="Video Generation, Video Editing, 3D Point Tracking, Dynamic 3D Gaussian Splatting, 4D Gaussian Splatting, 4D Video">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking</title>
+  <!-- <title>GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking</title> -->
+  <title>GS-DiT: Advancing Video Generation with Dynamic 3D Gaussian Fields through Efficient Dense 3D Point Tracking</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -32,7 +34,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-size-2 publication-title">GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking</h1>
+          <!-- <h1 class="title is-size-2 publication-title">GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking</h1> -->
+          <h1 class="title is-size-2 publication-title">GS-DiT: Advancing Video Generation with Dynamic 3D Gaussian Fields through Efficient Dense 3D Point Tracking</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://wkbian.github.io/">Weikang Bian</a><sup>1,2</sup>, </span>
@@ -54,16 +57,30 @@
             <span class="author-block"><sup>3</sup>Avolution AI</span>
           </div>
 
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><b>CVPR 2025</b></span>
+          </div>
+
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Bian_GS-DiT_Advancing_Video_Generation_with_Dynamic_3D_Gaussian_Fields_through_CVPR_2025_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link. -->
               <span class="link-block">
                 <a href="https://arxiv.org/abs/2501.02690"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper</span>
+                  <span>arXiv</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -123,7 +140,17 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            4D video control is essential in video generation as it enables the use of sophisticated lens techniques, such as multi-camera shooting and dolly zoom, which are currently unsupported by existing methods. Training a video Diffusion Transformer (DiT) directly to control 4D content requires expensive multi-view videos. Inspired by Monocular Dynamic novel View Synthesis (MDVS) that optimizes a 4D representation and renders videos according to different 4D elements, such as camera pose and object motion editing, we bring pseudo 4D Gaussian fields to video generation. Specifically, we propose a novel framework that constructs a pseudo 4D Gaussian field with dense 3D point tracking and renders the Gaussian field for all video frames. Then we finetune a pretrained DiT to generate videos following the guidance of the rendered video, dubbed as GS-DiT. To boost the training of the GS-DiT, we also propose an efficient Dense 3D Point Tracking (D3D-PT) method for the pseudo 4D Gaussian field construction. Our D3D-PT outperforms SpatialTracker, the state-of-the-art sparse 3D point tracking method, in accuracy and accelerates the inference speed by two orders of magnitude. During the inference stage, GS-DiT can generate videos with the same dynamic content while adhering to different camera parameters, addressing a significant limitation of current video generation models. GS-DiT demonstrates strong generalization capabilities and extends the 4D controllability of Gaussian splatting to video generation beyond just camera poses. It supports advanced cinematic effects through the manipulation of the Gaussian field and camera intrinsics, making it a powerful tool for creative video production.
+            <!-- 4D video control is essential in video generation as it enables the use of sophisticated lens techniques, such as multi-camera shooting and dolly zoom, which are currently unsupported by existing methods. Training a video Diffusion Transformer (DiT) directly to control 4D content requires expensive multi-view videos. Inspired by Monocular Dynamic novel View Synthesis (MDVS) that optimizes a 4D representation and renders videos according to different 4D elements, such as camera pose and object motion editing, we bring pseudo 4D Gaussian fields to video generation. Specifically, we propose a novel framework that constructs a pseudo 4D Gaussian field with dense 3D point tracking and renders the Gaussian field for all video frames. Then we finetune a pretrained DiT to generate videos following the guidance of the rendered video, dubbed as GS-DiT. To boost the training of the GS-DiT, we also propose an efficient Dense 3D Point Tracking (D3D-PT) method for the pseudo 4D Gaussian field construction. Our D3D-PT outperforms SpatialTracker, the state-of-the-art sparse 3D point tracking method, in accuracy and accelerates the inference speed by two orders of magnitude. During the inference stage, GS-DiT can generate videos with the same dynamic content while adhering to different camera parameters, addressing a significant limitation of current video generation models. GS-DiT demonstrates strong generalization capabilities and extends the 4D controllability of Gaussian splatting to video generation beyond just camera poses. It supports advanced cinematic effects through the manipulation of the Gaussian field and camera intrinsics, making it a powerful tool for creative video production. -->
+            4D video control is essential in video generation as it enables the use of sophisticated lens techniques, such as multicamera shooting and dolly zoom, which are currently unsupported by existing methods.
+            Training a video Diffusion Transformer (DiT) directly to control 4D content requires expensive multi-view videos.
+            Inspired by Monocular Dynamic novel View Synthesis (MDVS) that optimizes a 4D representation and renders videos according to different 4D elements, such as camera pose and object motion editing, we bring dynamic 3D Gaussian fields to video generation.
+            Specifically, we propose a novel framework that constructs dynamic 3D Gaussian fields with dense 3D point tracking and renders the Gaussian field for all video frames.
+            Then we finetune a pretrained DiT to generate videos following the guidance of the rendered video, dubbed as GS-DiT.
+            To boost the training of the GS-DiT, we also propose an efficient Dense 3D Point Tracking (D3D-PT) method for the dynamic 3D Gaussian field construction.
+            Our D3D-PT outperforms SpatialTracker, the state-of-the-art sparse 3D point tracking method, in accuracy and accelerates the inference speed by two orders of magnitude.
+            During the inference stage, GS-DiT can generate videos with the same dynamic content while adhering to different camera parameters, addressing a significant limitation of current video generation models.
+            GS-DiT demonstrates strong generalization capabilities and extends the 4D controllability of Gaussian splatting to video generation beyond just camera poses.
+            It supports advanced cinematic effects through the manipulation of the Gaussian field and camera intrinsics, making it a powerful tool for creative video production. 
           </p>
         </div>
       </div>
@@ -617,6 +644,14 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3">BibTeX</h2>
     <pre><code>
+@inproceedings{bian2025gsdit,
+  title={GS-DiT: Advancing Video Generation with Dynamic 3D Gaussian Fields through Efficient Dense 3D Point Tracking},
+  author={Bian, Weikang and Huang, Zhaoyang and Shi, Xiaoyu and Li, Yijin and Wang, Fu-Yun and Li, Hongsheng},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={21717--21727},
+  year={2025}
+}
+
 @article{bian2025gsdit,
   title={GS-DiT: Advancing Video Generation with Pseudo 4D Gaussian Fields through Efficient Dense 3D Point Tracking},
   author={Bian, Weikang and Huang, Zhaoyang and Shi, Xiaoyu and Li, Yijin and Wang, Fu-Yun and Li, Hongsheng},
